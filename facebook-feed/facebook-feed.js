@@ -25,7 +25,7 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
                 separatorColor: '#DDDDDD',
                 timestampColor: '#DDDDDD'
             },
-            FB_BASE_URL = location.protocol + '//www.facebook.com/',
+            FB_BASE_URL = 'https://www.facebook.com/',
             ACCESS_TOKEN = '279915592145003|EzrYJeGR2WzRgpjf4hjYlaMv-yY'; // Access token should never change unless the FaceBook app is deleted or its app secret is updated.
 
 
@@ -137,7 +137,7 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
             var loaderLocY = (_self.prop.height / 2) - 25 + 'px';
             _self.div.firstElementChild.innerHTML = _self.template(_templates.loadingGif, {loaderY: loaderLocY});
 
-            var url = location.protocol + '//graph.facebook.com/v2.4/' + _facebookPage + '/feed?access_token=' + ACCESS_TOKEN + '&fields=id,picture,message,link,icon,created_time';
+            var url = 'https://graph.facebook.com/v2.4/' + _facebookPage + '/feed?access_token=' + ACCESS_TOKEN + '&fields=id,picture,message,link,icon,created_time';
 
             console.log(location.protocol);
             console.log('ddddddddd')
