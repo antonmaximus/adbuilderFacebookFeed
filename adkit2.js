@@ -4161,7 +4161,8 @@ define('core/main',['requireDomReady', 'core/adkitAPI', 'core/adManager', 'core/
     initEnvironment();
 
 	var curScript = getCurrentScript();
-    var adkitMode = curScript.getAttribute('adkit-mode');
+    // var adkitMode = curScript.getAttribute('adkit-mode');
+    var adkitMode = 'local';
     var isServing = adkitMode ? (adkitMode === 'serving') : true;
     var adkitConfig = curScript.getAttribute('adkit-config');
     var configPath = getConfigPath();
