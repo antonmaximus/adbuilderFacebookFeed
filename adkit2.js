@@ -4169,6 +4169,8 @@ define('core/main',['requireDomReady', 'core/adkitAPI', 'core/adManager', 'core/
     // debugger;
     var configPath = getConfigPath();
     var adkitBasePath = fixPathSep(curScript.src.substring(0, curScript.src.lastIndexOf(urlSep))+'/');
+    console.log(adkitBasePath);
+    debugger
     var requirejsPath = adkitBasePath + '/contrib/requirejs/require.js';
 	var clientPath = isServing ? fixPathSep(adkit.environment.paths.nonCachedScript) : 'client';
     var configFallback = [configPath, configjs];
