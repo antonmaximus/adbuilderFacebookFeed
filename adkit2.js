@@ -4164,7 +4164,9 @@ define('core/main',['requireDomReady', 'core/adkitAPI', 'core/adManager', 'core/
     // var adkitMode = curScript.getAttribute('adkit-mode');
     var adkitMode = 'local';
     var isServing = adkitMode ? (adkitMode === 'serving') : true;
-    var adkitConfig = curScript.getAttribute('adkit-config');
+    var adkitConfig =  null; //curScript.getAttribute('adkit-config');
+    // console.log(adkitConfig);
+    // debugger;
     var configPath = getConfigPath();
     var adkitBasePath = fixPathSep(curScript.src.substring(0, curScript.src.lastIndexOf(urlSep))+'/');
     var requirejsPath = adkitBasePath + '/contrib/requirejs/require.js';
