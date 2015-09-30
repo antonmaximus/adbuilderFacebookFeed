@@ -203,7 +203,7 @@ function fetchFeedData(url,callback) {
         console.log(xmlhttp);
         if (xmlhttp) {
             console.log(xmlhttp);
-            
+
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                     if (xmlhttp.status == 200) {
@@ -216,6 +216,11 @@ function fetchFeedData(url,callback) {
                     }
                 }
             };
+
+        xmlhttp.open("GET",url,true);
+        xmlhttp.send();
+
+        
         }
     } 
 
@@ -230,8 +235,7 @@ function fetchFeedData(url,callback) {
     //         console.log('Facebook Group is Invalid');
     //     }
     // };
-    xmlhttp.open("GET",url,true);
-    xmlhttp.send();
+
 }
 
 
