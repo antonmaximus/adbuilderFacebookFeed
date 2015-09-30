@@ -200,6 +200,7 @@ function fetchFeedData(url,callback) {
     } else {
         console.log('XMLHttpRequest');
         xmlhttp = new XMLHttpRequest();
+        console.log(xmlhttp);
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                 if (xmlhttp.status == 200) {
