@@ -124,15 +124,9 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
         });
 
         function createTimestamp(creation) {
-            console.log(creation.split('+')[0]);
             var date = new Date(creation.split('+')[0]);
             var currDate = new Date();
             var hours = Math.abs(currDate - date) / (60*60*1000);
-
-            console.log("===============")
-            console.log(date)
-
-            var birthday = new Date('December 17, 1995 03:24:00');
 
             // If less than 24 hours, return number of hours since posting; otherwise, month + day
             return (hours < 24) ? Math.floor(hours) + 'h' : 
@@ -145,9 +139,6 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
 
             var url = 'https://graph.facebook.com/v2.4/' + _facebookPage + '/feed?access_token=' + ACCESS_TOKEN + '&fields=id,picture,message,link,icon,created_time';
 
-            console.log(location.protocol);
-            console.log('ddddddddd')
-            console.log(url)
             fetchFeedData(url, drawFeedElements);
         }
 
@@ -219,32 +210,9 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
                 };
             } 
 
-            xmlhttp.open("GET",url,true);
+            xmlhttp.open("GET", url, true);
             xmlhttp.send();
         }
-
-
-
-
-        // function fetchFeedData(url, callback) {
-        //     console.log(url);
-        //     var xmlhttp = new XMLHttpRequest();
-        //     xmlhttp.onreadystatechange = function () {
-        //         if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-        //             if (xmlhttp.status == 200) {
-        //                 _feedData = JSON.parse(xmlhttp.responseText).data;
-        //                 callback();
-        //             } else if (xmlhttp.status == 400) {
-        //                 console.log('There was an error 400');
-        //             } else {
-        //                 console.log('Facebook Group is Invalid');
-        //             }
-        //         }
-        //     };
-
-        //     xmlhttp.open("GET", url, true);
-        //     xmlhttp.send();
-        // };
 
         function hashString(str) {
             var hash = 0, i, chr, len;
