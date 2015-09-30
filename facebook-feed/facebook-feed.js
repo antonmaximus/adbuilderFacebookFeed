@@ -141,6 +141,7 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
 
             console.log(location.protocol);
             console.log('ddddddddd')
+            console.log(url)
             fetchFeedData(url, drawFeedElements);
         }
 
