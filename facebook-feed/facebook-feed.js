@@ -124,13 +124,16 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
         });
 
         function createTimestamp(creation) {
-            var date = new Date(creation);
+            console.log(creation.split('+')[0]);
+            var date = new Date(creation.split('+')[0]);
             var currDate = new Date();
             var hours = Math.abs(currDate - date) / (60*60*1000);
 
             console.log("===============")
             console.log(date)
-            
+
+            var birthday = new Date('December 17, 1995 03:24:00');
+
             // If less than 24 hours, return number of hours since posting; otherwise, month + day
             return (hours < 24) ? Math.floor(hours) + 'h' : 
                 date.toDateString().substring(4, 7) + ' ' + date.toDateString().substring(8, 10);
