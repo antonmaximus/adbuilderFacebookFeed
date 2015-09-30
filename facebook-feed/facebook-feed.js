@@ -190,17 +190,29 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
 
 function fetchFeedData(url,callback) {
     var xmlhttp;
-    if (window.XDomainRequest) {
+    if (window.XDomainRequest) { // IE 9
+        console.log('XDomainRequest');
         xmlhttp=new XDomainRequest();
         xmlhttp.onload = function(){
             _feedData = JSON.parse(xmlhttp.responseText).data;
             callback();
         };
-    } else if (window.XMLHttpRequest) {
-        xmlhttp=new XMLHttpRequest();
-    } else {
-        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
+    } else (window.XMLHttpRequest) {
+        console.log('XMLHttpRequest');
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                if (xmlhttp.status == 200) {
+                    _feedData = JSON.parse(xmlhttp.responseText).data;
+                    callback();
+                } else if (xmlhttp.status == 400) {
+                    console.log('There was an error 400');
+                } else {
+                    console.log('Facebook Group is Invalid');
+                }
+            }
+        };
+    } 
 
     console.log('xmlhttp.onreadystatechange: ' + xmlhttp.onreadystatechange);
     // xmlhttp.onreadystatechange=function() {
