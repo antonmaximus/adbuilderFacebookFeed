@@ -201,18 +201,22 @@ function fetchFeedData(url,callback) {
         console.log('XMLHttpRequest');
         xmlhttp = new XMLHttpRequest();
         console.log(xmlhttp);
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                if (xmlhttp.status == 200) {
-                    _feedData = JSON.parse(xmlhttp.responseText).data;
-                    callback();
-                } else if (xmlhttp.status == 400) {
-                    console.log('There was an error 400');
-                } else {
-                    console.log('Facebook Group is Invalid');
+        if (xmlhttp) {
+            console.log(xmlhttp);
+            
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                    if (xmlhttp.status == 200) {
+                        _feedData = JSON.parse(xmlhttp.responseText).data;
+                        callback();
+                    } else if (xmlhttp.status == 400) {
+                        console.log('There was an error 400');
+                    } else {
+                        console.log('Facebook Group is Invalid');
+                    }
                 }
-            }
-        };
+            };
+        }
     } 
 
     console.log('xmlhttp.onreadystatechange: ' + xmlhttp.onreadystatechange);
