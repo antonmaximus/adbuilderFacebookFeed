@@ -128,6 +128,9 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
             var currDate = new Date();
             var hours = Math.abs(currDate - date) / (60*60*1000);
 
+            console.log("===============")
+            console.log(date)
+            
             // If less than 24 hours, return number of hours since posting; otherwise, month + day
             return (hours < 24) ? Math.floor(hours) + 'h' : 
                 date.toDateString().substring(4, 7) + ' ' + date.toDateString().substring(8, 10);
@@ -188,47 +191,34 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
             });
         }
 
-function fetchFeedData(url,callback) {
-    console.log('mmmmmm');
-    var xmlhttp;
-    if (window.XDomainRequest) { // IE 9
-        console.log('XDomainRequest');
-        xmlhttp = new XDomainRequest();
-        xmlhttp.onload = function(){
-            _feedData = JSON.parse(xmlhttp.responseText).data;
-            callback();
-        };
-    } else {
-        console.log('XMLHttpRequest');
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                if (xmlhttp.status == 200) {
+
+        function fetchFeedData(url,callback) {
+            var xmlhttp;
+            if (window.XDomainRequest) { // IE 9
+                xmlhttp = new XDomainRequest();
+                xmlhttp.onload = function(){
                     _feedData = JSON.parse(xmlhttp.responseText).data;
                     callback();
-                } else if (xmlhttp.status == 400) {
-                    console.log('There was an error 400');
-                } else {
-                    console.log('Facebook Group is Invalid');
-                }
-            }
-        };
-    } 
+                };
+            } else {
+                xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                        if (xmlhttp.status == 200) {
+                            _feedData = JSON.parse(xmlhttp.responseText).data;
+                            callback();
+                        } else if (xmlhttp.status == 400) {
+                            console.log('There was an error 400');
+                        } else {
+                            console.log('Facebook Group is Invalid');
+                        }
+                    }
+                };
+            } 
 
-    console.log('xmlhttp.onreadystatechange: ' + xmlhttp.onreadystatechange);
-    // xmlhttp.onreadystatechange=function() {
-    //     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-    //         _feedData = JSON.parse(xmlhttp.responseText).data;
-    //         callback();
-    //     } else if (xmlhttp.status == 400) {
-    //         console.log('There was an error 400');
-    //     } else {
-    //         console.log('Facebook Group is Invalid');
-    //     }
-    // };
-    xmlhttp.open("GET",url,true);
-    xmlhttp.send();
-}
+            xmlhttp.open("GET",url,true);
+            xmlhttp.send();
+        }
 
 
 
