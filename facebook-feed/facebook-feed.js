@@ -202,6 +202,7 @@ function fetchFeedData(url,callback) {
         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
     }
 
+    console.log('xmlhttp.onreadystatechange: ' + xmlhttp.onreadystatechange);
     // xmlhttp.onreadystatechange=function() {
     //     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
     //         _feedData = JSON.parse(xmlhttp.responseText).data;
