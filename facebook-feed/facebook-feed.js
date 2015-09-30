@@ -189,8 +189,9 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
         }
 
 function fetchFeedData(url,callback) {
+    console.log('mmmmmm');
     var xmlhttp;
-    if (false) { // IE 9
+    if (window.XDomainRequest) { // IE 9
         console.log('XDomainRequest');
         xmlhttp = new XDomainRequest();
         xmlhttp.onload = function(){
@@ -200,28 +201,18 @@ function fetchFeedData(url,callback) {
     } else {
         console.log('XMLHttpRequest');
         xmlhttp = new XMLHttpRequest();
-        console.log(xmlhttp);
-        if (xmlhttp) {
-            console.log(xmlhttp);
-
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                    if (xmlhttp.status == 200) {
-                        _feedData = JSON.parse(xmlhttp.responseText).data;
-                        callback();
-                    } else if (xmlhttp.status == 400) {
-                        console.log('There was an error 400');
-                    } else {
-                        console.log('Facebook Group is Invalid');
-                    }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                if (xmlhttp.status == 200) {
+                    _feedData = JSON.parse(xmlhttp.responseText).data;
+                    callback();
+                } else if (xmlhttp.status == 400) {
+                    console.log('There was an error 400');
+                } else {
+                    console.log('Facebook Group is Invalid');
                 }
-            };
-
-        xmlhttp.open("GET",url,true);
-        xmlhttp.send();
-
-        
-        }
+            }
+        };
     } 
 
     console.log('xmlhttp.onreadystatechange: ' + xmlhttp.onreadystatechange);
@@ -235,7 +226,8 @@ function fetchFeedData(url,callback) {
     //         console.log('Facebook Group is Invalid');
     //     }
     // };
-
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send();
 }
 
 
