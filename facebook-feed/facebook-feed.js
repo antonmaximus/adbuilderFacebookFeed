@@ -190,9 +190,9 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
 
 function fetchFeedData(url,callback) {
     var xmlhttp;
-    if (window.XDomainRequest) { // IE 9
+    if (false) { // IE 9
         console.log('XDomainRequest');
-        xmlhttp=new XDomainRequest();
+        xmlhttp = new XDomainRequest();
         xmlhttp.onload = function(){
             _feedData = JSON.parse(xmlhttp.responseText).data;
             callback();
