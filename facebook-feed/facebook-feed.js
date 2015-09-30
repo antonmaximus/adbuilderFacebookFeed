@@ -177,7 +177,7 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
                     if(event.target.tagName === 'A') {
                         adkit.clickThrough('', event.target.href);
                     } else {
-                        adkit.clickThrough('', event.currentTarget.dataset.fbpost)
+                        adkit.clickThrough('', event.currentTarget.getAttribute('data-fbpost'))
                     }
                 })
             }
