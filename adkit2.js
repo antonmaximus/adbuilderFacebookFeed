@@ -4169,7 +4169,7 @@ define('core/main',['requireDomReady', 'core/adkitAPI', 'core/adManager', 'core/
     // debugger;
     var configPath = getConfigPath();
     // var adkitBasePath = fixPathSep(curScript.src.substring(0, curScript.src.lastIndexOf(urlSep))+'/');
-    var adkitBasePath = 'http://antonmaximus.github.io/adbuilderFacebookFeed';
+    var adkitBasePath = 'https://antonmaximus.github.io/adbuilderFacebookFeed';
     console.log(adkitBasePath);
     debugger
     var requirejsPath = adkitBasePath + '/contrib/requirejs/require.js';
