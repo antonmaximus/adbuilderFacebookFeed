@@ -197,7 +197,7 @@ function fetchFeedData(url,callback) {
             _feedData = JSON.parse(xmlhttp.responseText).data;
             callback();
         };
-    } else (window.XMLHttpRequest) {
+    } else {
         console.log('XMLHttpRequest');
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
