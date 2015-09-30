@@ -202,16 +202,16 @@ function fetchFeedData(url,callback) {
         xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
     }
 
-    xmlhttp.onreadystatechange=function() {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-            _feedData = JSON.parse(xmlhttp.responseText).data;
-            callback();
-        } else if (xmlhttp.status == 400) {
-            console.log('There was an error 400');
-        } else {
-            console.log('Facebook Group is Invalid');
-        }
-    };
+    // xmlhttp.onreadystatechange=function() {
+    //     if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+    //         _feedData = JSON.parse(xmlhttp.responseText).data;
+    //         callback();
+    //     } else if (xmlhttp.status == 400) {
+    //         console.log('There was an error 400');
+    //     } else {
+    //         console.log('Facebook Group is Invalid');
+    //     }
+    // };
     xmlhttp.open("GET",url,true);
     xmlhttp.send();
 }
