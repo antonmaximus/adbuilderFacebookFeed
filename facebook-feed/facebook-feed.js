@@ -178,12 +178,17 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
 
             this.div.innerHTML = buildTemplate.call(this, _templates.holder, {overlayBox: overlayBox, ulWrapper: ulWrapper}); 
 
-            // Check if scrollbar is present
-            var hasVerticalScrollbar = this.div.querySelector('ul').clientHeight >= this.div.clientHeight; 
-            if (hasVerticalScrollbar) {
-                this.div.querySelector('#overlayBox').style.right = '10px';
+            // Handle Scrollbars
+            var feedEntriesWidth = parseInt(window.getComputedStyle(this.div.querySelector('ul')).width);
+            if(feedEntriesWidth === this.div.clientWidth) { // When scrollbar fades in and fades out as an overlay
+                var hasVerticalScrollbar = this.div.querySelector('ul').clientHeight >= this.div.clientHeight; 
+                if (hasVerticalScrollbar) {
+                    this.div.querySelector('#overlayBox').style.right = '10px';
+                }
+            } else { // When scrollbar is always visible
+                var scrollbarWidth =  this.div.clientWidth - feedEntriesWidth;
+                this.div.querySelector('#overlayBox').style.right = scrollbarWidth + 'px';
             }
-
 
             // Apply clickthroughs
             var liTags = this.div.querySelectorAll('li');
