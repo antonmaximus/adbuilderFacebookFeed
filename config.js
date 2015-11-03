@@ -14,23 +14,19 @@ define({
                   timestampColor: '#888888',
                   width: 300,
                   height: 250,
-
-                  feedBackgroundColor: '#FF00FF',
+                  feedBackgroundColor: '#F8F8F8',
                   thumbnailPercentageSize: '16%',
-
-                  overlayColor: '#FFFFFF',
+                  overlayColor: '#444444',
                   overlayPosition: 'bottom',
-
-                  buttonTextFontSize: 16, 
-                  buttonWidth: '43px', 
-                  buttonHeight: '17px', 
-                  buttonPositionTop: 6, 
+                  buttonTextFontSize: 14, 
+                  buttonWidth: '72px', 
+                  buttonHeight: '23px', 
+                  buttonPositionTop: 7, 
                   buttonPositionRight: 10, 
-                  buttonColor: '#0000FF', 
-                  buttonText: 'VISIT',  
-                  buttonTextColor: '#FF0000',  
+                  buttonColor: '#0052b1', 
+                  buttonText: 'SIZMEK',  
+                  buttonTextColor: '#FFFFFF',  
                   buttonTextFontFamily: 'Helvetica',
-
 		}
     ]
 });
