@@ -17,7 +17,7 @@ define({
                   feedBackgroundColor: '#F8F8F8',
                   thumbnailPercentageSize: '16%',
                   overlayHeight: '32px',
-                  overlayColor: '#FF4444',
+                  overlayColor: '#ffa2a2',
                   overlayPosition: 'bottom',
                   buttonTextFontSize: 14, 
                   buttonWidth: '72px', 

@@ -6,7 +6,7 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
 
         var _templates = {
             holder: '<div style="position: relative; width: 100%; height: 100%;"><%=overlayBox %><%=ulWrapper %></div>',
-            overlayBox: '<div id="overlayBox" style="position: absolute; <%=overlayPosition %>: 0; height: <%=overlayHeight %>; width: 100%; background: rgba(<%=overlayColor %>, 0.5); text-align: right; "><a id="fbook-page" style="text-decoration: none;" href="<%=fbookPageLink %>"><div style="background: <%=buttonColor %>; color: <%=buttonTextColor %>; font-size: <%=buttonTextFontSize %>; width: <%=buttonWidth %>; height: <%=buttonHeight %>; line-height: <%=buttonHeight %>; top: <%=buttonPositionTop %>; right: <%=buttonPositionRight %>; font-family: <%=buttonTextFontFamily %>; display: inline-block; overflow: hidden; text-align: center; position: relative; border-radius: 6px;"><%=buttonText %></div></a></div>',
+            overlayBox: '<div id="overlayBox" style="position: absolute; <%=overlayPosition %>: 0; height: <%=overlayHeight %>; width: 100%; background: rgba(<%=overlayColor %>, 1); text-align: right; "><a id="fbook-page" style="text-decoration: none;" href="<%=fbookPageLink %>"><div style="background: <%=buttonColor %>; color: <%=buttonTextColor %>; font-size: <%=buttonTextFontSize %>; width: <%=buttonWidth %>; height: <%=buttonHeight %>; line-height: <%=buttonHeight %>; top: <%=buttonPositionTop %>; right: <%=buttonPositionRight %>; font-family: <%=buttonTextFontFamily %>; display: inline-block; overflow: hidden; text-align: center; position: relative; border-radius: 6px;"><%=buttonText %></div></a></div>',
             li: '<li data-fbpost="<%=fbpostLink %>"> <div class="feed-item" style="width: 100%; padding: 4px 0 2px 0; border-bottom: 1px solid <%=separatorColor %>; cursor: pointer;"> <img src="<%=picture %>" style="width: <%=thumbPercentSize %>; margin-left: 2px; margin-top: 2px;"/> <div style="width: <%=textPercentSize %>; vertical-align: top; display: inline-block; word-wrap: break-word; margin-left: 3px; "> <span><%=message %></span> <br/> <a href="<%=articleLink %>" target="_blank" style="color: <%=linkColor %>; text-decoration: underline; cursor: pointer;"> <%=articleLink %> </a><span style="text-align: right; display: block; vertical-align: bottom; margin-right: 5px; color: <%=timestampColor %>;"><%=timestamp %></span> </div></div></li>',
             liNoThumb: '<li data-fbpost="<%=fbpostLink %>"> <div class="feed-item" style="width: 100%; padding: 4px 0 2px 0; border-bottom: 1px solid <%=separatorColor %>; cursor: pointer;"> <div style="width: 100%; vertical-align: top; display: inline-block; word-wrap: break-word; margin-left: 0; "> <span><%=message %></span> <br/> <a href="<%=articleLink %>" target="_blank" style="color: <%=linkColor %>; text-decoration: underline; cursor: pointer;"> <%=articleLink %> </a><span style="text-align: right; display: block; vertical-align: bottom; color: <%=timestampColor %>;"><%=timestamp %></span> </div></div></li>',
             ul: '<ul style="list-style: none; padding: 0; margin: 0; background-color:<%=feedBackgroundColor %>;"><%=li %></ul>',
@@ -164,8 +164,6 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
             var overlayColorRGB = hexToRgb(this.prop.overlayColor);
             var ul = buildTemplate.call(this, _templates.ul, {li: feedEntries, feedBackgroundColor: this.prop.feedBackgroundColor || DEFAULT.feedBackgroundColor});
             var feedHeight = parseInt(this.prop.height) - parseInt(this.prop.overlayHeight || DEFAULT.overlayHeight);
-            console.log(feedHeight, this.prop.height, parseInt(this.prop.overlayHeight || DEFAULT.overlayHeight))
-            console.log(this.prop.overlayHeight, DEFAULT.overlayHeight)
             var ulWrapper = buildTemplate.call(this, _templates.ulWrapper, {ul: ul, feedHeight: feedHeight + 'px'});
             var overlayBox = buildTemplate.call(this, _templates.overlayBox, {fbookPageLink: FB_BASE_URL + this.prop.facebookPageUrl, 
                 overlayHeight: this.prop.overlayHeight || DEFAULT.overlayHeight,
@@ -183,21 +181,6 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
             });
 
             this.div.innerHTML = buildTemplate.call(this, _templates.holder, {overlayBox: overlayBox, ulWrapper: ulWrapper}); 
-
-            // Handle Scrollbars (depending on one's computer settings, scrollbars can appear in 2 possible ways)
-            var feedEntriesWidth = parseInt(window.getComputedStyle(this.div.querySelector('ul')).width);
-            if(feedEntriesWidth === this.div.clientWidth) { // When scrollbar fades in and fades out as an overlay
-                var hasVerticalScrollbar = this.div.querySelector('ul').clientHeight >= this.div.clientHeight; 
-                if (hasVerticalScrollbar) {
-                    this.div.querySelector('#overlayBox').style.right = '10px';
-                }
-            } else { // When scrollbar is always visible
-                var scrollbarWidth =  this.div.clientWidth - feedEntriesWidth;
-                this.div.querySelector('#overlayBox').style.right = scrollbarWidth + 'px';
-            }
-
-            this.div.querySelector('#overlayBox').style.right = 0;
-
 
             // Apply clickthroughs
             var liTags = this.div.querySelectorAll('li');
