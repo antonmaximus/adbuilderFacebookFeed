@@ -72,7 +72,7 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
 
             if(this.prop.placeholderImage) {
                 // Use placeholder image until user clicks on it.
-                domUtils.bindEvent(this.div, 'click', function() {
+                domUtils.bindEvent(this.div.querySelector('#sz-placeholderImage'), 'click', function() {
                     EB.userActionCounter("FacebookFeedClicked");
                     drawFacebookFeed.call(this);
                 }.bind(this));
@@ -188,16 +188,16 @@ define(['comp/graphicComp', 'utils/domUtils', 'utils/objectUtils'],
                 liTags[i].addEventListener('click', function(event) {
                     event.preventDefault();
                     if(event.target.tagName === 'A') {
-                        this.client.clickThrough('FacebookFeedClicked', event.target.href);
+                        EB.clickthrough('FacebookFeedClicked', event.target.href);
                     } else {
-                        this.client.clickThrough('FacebookFeedClicked', event.currentTarget.getAttribute('data-fbpost')); //IE 9
+                        EB.clickthrough('FacebookFeedClicked', event.currentTarget.getAttribute('data-fbpost')); //IE 9
                     }
                 }.bind(this));
             }
 
             this.div.querySelector('#fbook-page').addEventListener('click', function(event) {
                 event.preventDefault();
-                this.client.clickThrough('FacebookFeedClicked', event.currentTarget.href);
+                EB.clickthrough('FacebookFeedClicked', event.currentTarget.href);
             }.bind(this));
         }
 
